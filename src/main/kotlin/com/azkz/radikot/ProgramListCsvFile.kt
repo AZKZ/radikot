@@ -69,7 +69,7 @@ class ProgramListCsvFile(csvFile: File) {
                 name = values[INDEX_PROGRAM_NAME],
                 startDateTime = ThirtyHourClockLocalDateTime.of(targetDates[dayOfWeek]!!, values[INDEX_START_TIME]),
                 endDateTime = ThirtyHourClockLocalDateTime.of(targetDates[dayOfWeek]!!, values[INDEX_END_TIME]),
-                station = Station.enumById(values[INDEX_STATION_ID])!! // TODO Enumにする必要ない気がする。http://radiko.jp/v3/station/region/full.xmlで全部見られるし。
+                stationId = values[INDEX_STATION_ID]!!
             )
         }
 

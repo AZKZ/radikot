@@ -140,7 +140,7 @@ class RadikoAuthHTTPClient {
         val playlistResponse: HttpResponse =
             client.get(
                 "https://radiko.jp/v2/api/ts/playlist.m3u8" +
-                        "?station_id=${radioProgram.station.id}" +
+                        "?station_id=${radioProgram.stationId}" +
                         "&l=15" +
                         "&ft=${radioProgram.startDateTime.formatted24HoursClockDatetime(dateTimeFormatter)}" +
                         "&to=${radioProgram.endDateTime.formatted24HoursClockDatetime(dateTimeFormatter)}"

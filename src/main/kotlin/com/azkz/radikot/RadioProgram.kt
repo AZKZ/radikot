@@ -20,9 +20,10 @@ class RadioProgram(
     val endDateTime: ThirtyHourClockLocalDateTime,
 
     /**
-     * 放送局
+     * 放送局ID<br>
+     * [http://radiko.jp/v3/station/region/full.xml](http://radiko.jp/v3/station/region/full.xml)に書いてあります。
      */
-    val station: Station
+    val stationId: String
 
 ) {
 
