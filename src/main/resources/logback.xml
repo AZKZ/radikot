@@ -1,0 +1,44 @@
+<configuration>
+
+    <!-- 標準出力用設定 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- ファイル出力用設定 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日毎にログファイルを切り替える -->
+            <fileNamePattern>logs/radikot-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 保持しておくログアーカイブファイルの最大数 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file : %line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ルートロガー -->
+    <!-- DEBUG, INFO, WARN, ERROR レベルのログを出力 -->
+    <root level="DEBUG">
+        <!-- 全てのロガーのメッセージを定義したアペンダー「STDOUTに出力 -->
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!-- INFO, WARN, ERROR レベルのログを出力 -->
+    <logger name="Main" level="INFO">
+        <!-- 定義した FILE アペンダーに出力 -->
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <!-- INFO, WARN, ERROR レベルのログを出力 -->
+    <logger name="com.azkz.radikot" level="INFO">
+        <!-- 定義した FILE アペンダーに出力 -->
+        <appender-ref ref="FILE"/>
+    </logger>
+
+</configuration>

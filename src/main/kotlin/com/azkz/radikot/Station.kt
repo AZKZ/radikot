@@ -5,8 +5,8 @@ package com.azkz.radikot
  */
 enum class Station(val id: String) {
     ＨＢＣラジオ("HBC"),
-    ＳＴＶラジオ("STV"),
     AIR_G_FM北海道("AIR_G"),
+    ＳＴＶラジオ("STV"),
     FM_NORTH_WAVE("NORTHWAVE"),
     ＲＡＢ青森放送("RAB"),
     エフエム青森("AFB"),
@@ -113,5 +113,21 @@ enum class Station(val id: String) {
     ラジオNIKKEI第1("RN1"),
     ラジオNIKKEI第2("RN2"),
     放送大学("HOUSOU_DAIGAKU"),
-    NHK_FM_東京("JOAK_FM"),
+    NHK_FM_東京("JOAK_FM");
+
+    companion object {
+        /**
+         * 放送局IDをキーとしたEnumのMap
+         */
+        private val ID_TO_ENUM: Map<String, Station> = Station.values().map { station -> station.id to station }.toMap()
+
+        /**
+         * IDからEnumを取得する
+         */
+        fun enumById(id: String): Station? {
+            return ID_TO_ENUM[id]
+        }
+    }
+
+
 }
