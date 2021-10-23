@@ -31,4 +31,14 @@ object RadikotProperties {
      */
     val DOWNLOAD_LOCATION_DIR_PATH: String = this.properties["download.location.dir.path"].toString()
 
+    /**
+     * radikoのログインメールアドレス
+     */
+    val RADIKO_LOGIN_MAIL: String = this.properties["radiko.login.mail"].toString()
+
+    /**
+     * radikoのログインパスワード
+     */
+    val RADIKO_LOGIN_PASSWORD: String = this.properties["radiko.login.password"].toString()
+
 }

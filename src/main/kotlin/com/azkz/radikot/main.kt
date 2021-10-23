@@ -40,10 +40,11 @@ suspend fun main() {
         // ==============================================================
         for (radioProgram in programListCsvFile.radioPrograms) {
             logger.info { "=== ${radioProgram.name} download 開始 ===" }
-            radioProgram.download(token)
+            client.download(radioProgram)
             logger.info { "=== ${radioProgram.name} download 終了 ===" }
         }
 
+        client.logout()
         client.close()
 
         logger.info { "====== Radikot 終了 ======" }
