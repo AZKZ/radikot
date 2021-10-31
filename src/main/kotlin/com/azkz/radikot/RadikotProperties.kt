@@ -24,21 +24,31 @@ object RadikotProperties {
     /**
      * 番組一覧CSVのファイルパス
      */
-    val PROGRAM_LIST_CSV_FILE_PATH: String = this.properties["program.list.csv.file.path"].toString()
+    val PROGRAM_LIST_CSV_FILE_PATH: String? = this.properties["program.list.csv.file.path"]?.toString()
 
     /**
      * ダウンロード先のディレクトリパス
      */
-    val DOWNLOAD_LOCATION_DIR_PATH: String = this.properties["download.location.dir.path"].toString()
+    val DOWNLOAD_LOCATION_DIR_PATH: String? = this.properties["download.location.dir.path"]?.toString()
 
     /**
      * radikoのログインメールアドレス
      */
-    val RADIKO_LOGIN_MAIL: String = this.properties["radiko.login.mail"].toString()
+    val RADIKO_LOGIN_MAIL: String? = this.properties["radiko.login.mail"]?.toString()
 
     /**
      * radikoのログインパスワード
      */
-    val RADIKO_LOGIN_PASSWORD: String = this.properties["radiko.login.password"].toString()
+    val RADIKO_LOGIN_PASSWORD: String? = this.properties["radiko.login.password"]?.toString()
+
+    /**
+     * Slackのトークン
+     */
+    val SLACK_TOKEN: String? = this.properties["slack.token"]?.toString()
+
+    /**
+     * Slackの通知先チャンネル(IDもしくは#チャンネル名)
+     */
+    val SLACK_CHANNEL: String? = this.properties["slack.channel"]?.toString()
 
 }

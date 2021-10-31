@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.azkz"
-version = "0.2.1"
+version = "0.3.0"
 
 repositories {
     mavenCentral()
@@ -26,6 +26,9 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.32")
     implementation("ch.qos.logback:logback-core:1.2.6")
     implementation("ch.qos.logback:logback-classic:1.2.6")
+
+    // 通知関係
+    implementation("com.slack.api:slack-api-client:1.12.1")
 }
 
 tasks.test {

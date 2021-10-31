@@ -1,6 +1,9 @@
 import com.azkz.radikot.ProgramListCsvFile
 import com.azkz.radikot.RadikoAuthHTTPClient
 import com.azkz.radikot.RadikotProperties
+import com.azkz.radikot.notification.NotificationHandler
+import com.azkz.radikot.notification.Notificator
+import com.azkz.radikot.notification.NotificatorFactory
 import mu.KotlinLogging
 import java.io.File
 
@@ -13,10 +16,18 @@ private val logger = KotlinLogging.logger {}
  * radikotのエントリーポイントです。<br>
  */
 suspend fun main() {
+    // 通知に使うハンドラー
+    val notificator: Notificator? = NotificatorFactory.create()
+    val notificationHandler = NotificationHandler(notificator)
 
     try {
 
         logger.info { "====== Radikot 開始 ======" }
+
+        // ==============================================================
+        // 開始通知送信
+        // ==============================================================
+        notificationHandler.onStart()
 
         // ==============================================================
         // 番組一覧CSVファイル読み込み
@@ -49,8 +60,17 @@ suspend fun main() {
 
         logger.info { "====== Radikot 終了 ======" }
 
+        // ==============================================================
+        // 正常終了通知送信
+        // ==============================================================
+        notificationHandler.onNormalFinish()
+
     } catch (e: Exception) {
         logger.error("====== 予期せぬエラー発生 ======", e)
+        // ==============================================================
+        // 異常終了通知送信
+        // ==============================================================
+        notificationHandler.onAbnormalFinish(e)
     }
 
 }

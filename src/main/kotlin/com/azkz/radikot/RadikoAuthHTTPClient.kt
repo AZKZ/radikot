@@ -58,7 +58,7 @@ class RadikoAuthHTTPClient {
         // ==============================================================
         // ログイン処理(プロパティでradikoのメールアドレスとパスワードが設定されている場合のみ処理する)
         // ==============================================================
-        if (RadikotProperties.RADIKO_LOGIN_MAIL != "null" && RadikotProperties.RADIKO_LOGIN_PASSWORD != "null") {
+        if (RadikotProperties.RADIKO_LOGIN_MAIL != null && RadikotProperties.RADIKO_LOGIN_PASSWORD != null) {
             try {
                 val loginResponse: HttpResponse = client.submitForm(
                     url = "https://radiko.jp/ap/member/login/login",
