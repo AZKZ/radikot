@@ -17,9 +17,9 @@ import java.util.*
 import kotlin.io.path.notExists
 
 /**
- * radiko認証用HTTPクライアント
+ * radikotのHTTPクライアント
  */
-class RadikoAuthHTTPClient {
+class RadikotHTTPClient {
 
     /**
      * HTTPクライアント
@@ -31,7 +31,7 @@ class RadikoAuthHTTPClient {
         }
         install(HttpTimeout) {
             // タイムアウト設定
-            requestTimeoutMillis = 5000
+            requestTimeoutMillis = 30000
         }
         install(HttpCookies) {
             storage = AcceptAllCookiesStorage()

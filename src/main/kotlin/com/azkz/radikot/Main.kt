@@ -1,5 +1,5 @@
 import com.azkz.radikot.ProgramListCsvFile
-import com.azkz.radikot.RadikoAuthHTTPClient
+import com.azkz.radikot.RadikotHTTPClient
 import com.azkz.radikot.RadikotProperties
 import com.azkz.radikot.notification.NotificationHandler
 import com.azkz.radikot.notification.Notificator
@@ -40,7 +40,7 @@ suspend fun main() {
         // radiko認証
         // ==============================================================
         logger.info { "=== Radiko authentication 開始 ===" }
-        val client = RadikoAuthHTTPClient()
+        val client = RadikotHTTPClient()
         client.authenticate()
         val token = client.authToken
         logger.info { "=== Radiko authentication 終了 ===" }
