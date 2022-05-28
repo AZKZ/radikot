@@ -44,6 +44,7 @@ class CompletedListFile(private val file: File):CompletedList {
     override fun add(radioProgram: RadioProgram) {
         // ファイルに書き込む
         file.appendText(Json.encodeToString(radioProgram))
+        file.appendText(System.lineSeparator())
 
         // フィールドのsetに追加する
         completedRadioPrograms.add(radioProgram)

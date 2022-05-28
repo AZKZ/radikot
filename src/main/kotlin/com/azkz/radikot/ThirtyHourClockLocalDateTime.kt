@@ -64,5 +64,27 @@ class ThirtyHourClockLocalDateTime private constructor(
         return this.convertedTo24HoursClock.toJavaLocalDateTime().format(formatter)
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is ThirtyHourClockLocalDateTime) return false
+
+        if (date != other.date) return false
+        if (hour != other.hour) return false
+        if (minute != other.minute) return false
+        if (second != other.second) return false
+        if (convertedTo24HoursClock != other.convertedTo24HoursClock) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = date.hashCode()
+        result = 31 * result + hour
+        result = 31 * result + minute
+        result = 31 * result + second
+        result = 31 * result + convertedTo24HoursClock.hashCode()
+        return result
+    }
+
 
 }

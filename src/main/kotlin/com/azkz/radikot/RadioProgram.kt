@@ -29,5 +29,24 @@ class RadioProgram(
     val stationId: String
 
 ) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is RadioProgram) return false
+
+        if (name != other.name) return false
+        if (startDateTime != other.startDateTime) return false
+        if (endDateTime != other.endDateTime) return false
+        if (stationId != other.stationId) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + startDateTime.hashCode()
+        result = 31 * result + endDateTime.hashCode()
+        result = 31 * result + stationId.hashCode()
+        return result
+    }
 
 }
