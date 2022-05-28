@@ -2,9 +2,9 @@ package com.azkz.radikot
 
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
-import io.ktor.client.features.*
-import io.ktor.client.features.cookies.*
-import io.ktor.client.features.logging.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.cookies.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
 import io.ktor.client.statement.*
@@ -151,7 +151,7 @@ class RadikotHTTPClient {
             }
 
         // httpsから始まる行がチャンクリスト(AACファイルの一覧)を取得するURLなので抜き取る
-        val chunklistUrl: String = playlistResponse.readText().lines().find { line -> line.startsWith("https://") }!!
+        val chunklistUrl: String = playlistResponse.bodyAsText().lines().find { line -> line.startsWith("https://") }!!
 
         // チャンクリストをHTTP通信で取得する
         val chunklistResponse: HttpResponse = client.get(chunklistUrl) {
@@ -161,7 +161,7 @@ class RadikotHTTPClient {
         }
 
         // チャンクリストの行数分繰り返す
-        for (line in chunklistResponse.readText().lines()) {
+        for (line in chunklistResponse.bodyAsText().lines()) {
             // 「https://」から始まる場合はAACファイルのURLなのでHTTP通信で取得する
             if (line.startsWith("https://")) {
                 val aacResponse: HttpResponse = client.get(line) {

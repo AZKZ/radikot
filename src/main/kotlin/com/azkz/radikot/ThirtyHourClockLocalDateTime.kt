@@ -1,13 +1,13 @@
 package com.azkz.radikot
 
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
+import kotlinx.datetime.*
+import kotlinx.serialization.Serializable
 import java.time.format.DateTimeFormatter
 
 /**
  * 30時間制で表現された日時
  */
+@Serializable
 class ThirtyHourClockLocalDateTime private constructor(
     val date: LocalDate,
     val hour: Int,
@@ -47,9 +47,10 @@ class ThirtyHourClockLocalDateTime private constructor(
      */
     private val convertedTo24HoursClock: LocalDateTime =
         if (hour >= 24) {
-            LocalDateTime.of(date.plusDays(1), LocalTime.of(hour - 24, minute, second))
+            val nextDate =  date.plus(DatePeriod(0,0,1))
+            LocalDateTime(nextDate.year,nextDate.month,nextDate.dayOfMonth,hour-24,minute,second)
         } else {
-            LocalDateTime.of(date, LocalTime.of(hour, minute, second))
+            LocalDateTime(date.year,date.month,date.dayOfMonth,hour,minute,second)
         }
 
     /**
@@ -60,7 +61,7 @@ class ThirtyHourClockLocalDateTime private constructor(
      * @return フォーマットされた24時間制の日時文字列
      */
     fun formatted24HoursClockDatetime(formatter: DateTimeFormatter): String {
-        return this.convertedTo24HoursClock.format(formatter)
+        return this.convertedTo24HoursClock.toJavaLocalDateTime().format(formatter)
     }
 
 

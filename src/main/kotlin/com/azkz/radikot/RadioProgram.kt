@@ -1,8 +1,11 @@
 package com.azkz.radikot
 
+import kotlinx.serialization.Serializable
+
 /**
  * ラジオ番組
  */
+@Serializable
 class RadioProgram(
     /**
      * 番組名

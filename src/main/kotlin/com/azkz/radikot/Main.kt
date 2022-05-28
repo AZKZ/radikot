@@ -1,4 +1,5 @@
-import com.azkz.radikot.ProgramListCsvFile
+import com.azkz.radikot.CompletedListFile
+import com.azkz.radikot.ProgramListFile
 import com.azkz.radikot.RadikotHTTPClient
 import com.azkz.radikot.RadikotProperties
 import com.azkz.radikot.notification.NotificationHandler
@@ -33,7 +34,14 @@ suspend fun main() {
         // 番組一覧CSVファイル読み込み
         // ==============================================================
         logger.info { "=== TargetCsvFile 開始 ===" }
-        val programListCsvFile = ProgramListCsvFile(File(RadikotProperties.PROGRAM_LIST_CSV_FILE_PATH))
+        val programListCsvFile = ProgramListFile(File(RadikotProperties.PROGRAM_LIST_CSV_FILE_PATH))
+        logger.info { "=== TargetCsvFile 終了 ===" }
+
+        // ==============================================================
+        // 完了済み番組一覧ファイル読み込み
+        // ==============================================================
+        logger.info { "=== CompletedListFile 開始 ===" }
+        val completedListFile = CompletedListFile(File(RadikotProperties.COMPLETED_LIST_FILE_PATH))
         logger.info { "=== TargetCsvFile 終了 ===" }
 
         // ==============================================================
@@ -50,8 +58,17 @@ suspend fun main() {
         // TODO 並列処理できるようにしてパフォーマンスを改善したい。
         // ==============================================================
         for (radioProgram in programListCsvFile.radioPrograms) {
+            // 既にダウンロードされている番組の場合はスキップする
+            if (completedListFile.isCompleted(radioProgram)) {
+                logger.info { "=== ${radioProgram.name} 完了済みのためスキップ ===" }
+                continue
+            }
+
             logger.info { "=== ${radioProgram.name} download 開始 ===" }
+            // ダウンロードする
             client.download(radioProgram)
+            // 完了済み番組一覧に追加する
+            completedListFile.add(radioProgram)
             logger.info { "=== ${radioProgram.name} download 終了 ===" }
         }
 

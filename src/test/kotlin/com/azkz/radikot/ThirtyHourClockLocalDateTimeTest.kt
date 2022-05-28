@@ -1,9 +1,9 @@
 package com.azkz.radikot
 
+import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import kotlin.test.assertEquals
 
@@ -14,7 +14,7 @@ internal class ThirtyHourClockLocalDateTimeTest {
         @Test
         fun `コロン有りの場合`() {
             // 入力値
-            val date = LocalDate.of(2020, 12, 31)
+            val date = LocalDate(2020, 12, 31)
             val hhmmss = "24:59:58"
 
             // テストメソッド呼び出し
@@ -30,7 +30,7 @@ internal class ThirtyHourClockLocalDateTimeTest {
         @Test
         fun `コロン無しの場合`() {
             // 入力値
-            val date = LocalDate.of(2020, 12, 31)
+            val date = LocalDate(2020, 12, 31)
             val hhmmss = "245958"
 
             // テストメソッド呼び出し
@@ -46,7 +46,7 @@ internal class ThirtyHourClockLocalDateTimeTest {
         @Test
         fun `時分秒の桁数が超過している場合`() {
             // 入力値
-            val date = LocalDate.of(2020, 12, 31)
+            val date = LocalDate(2020, 12, 31)
             val hhmmss = "2459581"
 
             // テストメソッド呼び出し
@@ -57,7 +57,7 @@ internal class ThirtyHourClockLocalDateTimeTest {
         @Test
         fun `時分秒の桁数が不足している場合`() {
             // 入力値
-            val date = LocalDate.of(2020, 12, 31)
+            val date = LocalDate(2020, 12, 31)
             val hhmmss = "24595"
 
             // テストメソッド呼び出し
@@ -68,7 +68,7 @@ internal class ThirtyHourClockLocalDateTimeTest {
         @Test
         fun `時分秒に数字以外の文字がある場合`() {
             // 入力値
-            val date = LocalDate.of(2020, 12, 31)
+            val date = LocalDate(2020, 12, 31)
             val hhmmss = "24595A"
 
             // テストメソッド呼び出し
@@ -82,7 +82,7 @@ internal class ThirtyHourClockLocalDateTimeTest {
         @Test
         fun `24時以降の日時が24時間制に変換されてフォーマットされていることの確認`() {
             // 入力値
-            val date = LocalDate.of(2020, 12, 31)
+            val date = LocalDate(2020, 12, 31)
             val hhmmss = "24:59:58"
             val formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
 
@@ -99,7 +99,7 @@ internal class ThirtyHourClockLocalDateTimeTest {
         @Test
         fun `24時未満の日時がそのままフォーマットされていることの確認`() {
             // 入力値
-            val date = LocalDate.of(2020, 12, 31)
+            val date = LocalDate(2020, 12, 31)
             val hhmmss = "23:59:58"
             val formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
 

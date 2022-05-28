@@ -27,6 +27,11 @@ object RadikotProperties {
     val PROGRAM_LIST_CSV_FILE_PATH: String? = this.properties["program.list.csv.file.path"]?.toString()
 
     /**
+     * 完了済み番組一覧のファイルパス
+     */
+    val COMPLETED_LIST_FILE_PATH: String? = this.properties["completed.list.file.path"]?.toString()
+
+    /**
      * ダウンロード先のディレクトリパス
      */
     val DOWNLOAD_LOCATION_DIR_PATH: String? = this.properties["download.location.dir.path"]?.toString()
