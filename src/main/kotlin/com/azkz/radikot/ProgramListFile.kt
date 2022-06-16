@@ -36,7 +36,7 @@ class ProgramListFile(csvFile: File) {
         // システム日付前日までの1週間の曜日と日付の対応表を作る
         // ==============================================================
         val currentDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
-        val yesterday = LocalDate(currentDateTime.year,currentDateTime.month,currentDateTime.dayOfMonth - 1)
+        val yesterday = LocalDate(currentDateTime.year,currentDateTime.month,currentDateTime.dayOfMonth).minus(1,DateTimeUnit.DAY)
         val targetDates: Map<DayOfWeek, LocalDate> = mapOf(
             yesterday.dayOfWeek to yesterday,
             yesterday.minus(DatePeriod(0,0,1)).dayOfWeek to yesterday.minus(DatePeriod(0,0,1)),
