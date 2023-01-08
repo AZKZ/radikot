@@ -32,6 +32,7 @@ class RadikotHTTPClient {
         install(HttpTimeout) {
             // タイムアウト設定
             requestTimeoutMillis = 30000
+            connectTimeoutMillis = 30000
         }
         install(HttpCookies) {
             storage = AcceptAllCookiesStorage()
