@@ -61,7 +61,7 @@ class RadikotHTTPClient {
         if (RadikotProperties.RADIKO_LOGIN_MAIL != null && RadikotProperties.RADIKO_LOGIN_PASSWORD != null) {
             try {
                 val loginResponse: HttpResponse = client.submitForm(
-                    url = "https://radiko.jp/ap/member/login/login",
+                    url = "https://radiko.jp/ap/member/webapi/member/login",
                     formParameters = Parameters.build {
                         append("mail", RadikotProperties.RADIKO_LOGIN_MAIL)
                         append("pass", RadikotProperties.RADIKO_LOGIN_PASSWORD)
