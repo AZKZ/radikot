@@ -1,0 +1,1 @@
+{"name":"おとなりさん","startDateTime":{"date":"2023-01-02","hour":8,"minute":0,"second":0},"endDateTime":{"date":"2023-01-02","hour":11,"minute":0,"second":0},"stationId":"QRR"}

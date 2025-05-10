@@ -1,3 +1,7 @@
 .gradle/
 .idea/
 build/
+logs/
+.DS_Store
+Recording/
+bin/
